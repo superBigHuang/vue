@@ -5,7 +5,7 @@
 import $ from 'jquery'  //相当于 const $ = require('jquery')
 
 $(function () {
-    $('li:odd').css('backgroundColor', 'lightblue')
+    $('li:odd').css('backgroundColor', 'red')
     $('li:even').css('backgroundColor', function () {
             return 'yellow'
     })

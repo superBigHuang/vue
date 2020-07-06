@@ -78,7 +78,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   //相当于 const $ = require('jquery')
 
 __WEBPACK_IMPORTED_MODULE_0_jquery___default()(function () {
-    __WEBPACK_IMPORTED_MODULE_0_jquery___default()('li:odd').css('backgroundColor', 'lightblue')
+    __WEBPACK_IMPORTED_MODULE_0_jquery___default()('li:odd').css('backgroundColor', 'red')
     __WEBPACK_IMPORTED_MODULE_0_jquery___default()('li:even').css('backgroundColor', function () {
             return 'yellow'
     })
