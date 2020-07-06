@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件修饰符</title>
+    <style>
+        .inner{
+            height: 150px;
+            background-color: teal;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="inner" @click="divHandler">
+            <!--使用.stop阻止冒泡-->
+            <input type="button" value="点" @click.stop="btnHandler">
+        </div>
+        <!--使用.prevent阻止默认行为-->
+        <a href="http://www.baidu.com" @click.prevent="linkClick">百度一下</a>
+
+        <!--使用.capture实现捕获机制-->
+        <div class="inner" @click.capture="divHandler">
+            <input type="button" value="点" @click="btnHandler">
+        </div>
+
+        <!--使用.self实现只有点击当前元素的时候触发点击事件-->
+        <div class="inner" @click.self="divHandler">
+            <input type="button" value="点" @click="btnHandler">
+        </div>
+
+        <!--使用.once实现只触发一次-->
+        <a href="http://www.baidu.com" @click.prevent.once="linkClick">百度一下</a>
+
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el : '#app' ,
+            data : {},
+            methods : {
+                divHandler(){
+                    console.log("这是触发了div的点击事件")
+                },
+                btnHandler(){
+                    console.log("这是触发了btn的点击事件")
+                },
+                linkClick(){
+                    console.log("触发了链接的点击事件")
+                },
+            },
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <input type="button" value="点击" @click="change">
+    <!--click触发的事件代码量较少的时候可以卸载@click=""之间-->
+    <input type="button" value="点击" @click="flag=!flag">
+
+    <!--v-if 每次都将元素移除或者添加 操作DOM-->
+    <!--v-if 有较高的切换性能消耗-->
+    <h3 v-if="flag">这是用v-if控制的元素</h3>
+    
+    <!--v-show 是操作display属性 不进行DOM的删除或增加-->
+    <!--v-show 有较高的初始渲染消耗-->
+    <h3 v-show="flag">这是用v-show控制的元素</h3>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            flag: true
+        },
+        methods: {
+            change() {
+                this.flag = !this.flag
+            }
+        },
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+        <p v-for="user in list">{{user.id}}---->{{user.name}}</p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el : '#app' ,
+            data : {
+                list : [
+                    {id: 1, name: "zs1"},
+                    {id: 2, name: "zs2"},
+                    {id: 3, name: "zs3"},
+                    {id: 4, name: "zs4"},
+                ],
+            },
+            methods : {},
+        });
+    </script>
+</body>
+</html>

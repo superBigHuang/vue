@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <button @click="getInfo">get请求</button>
+    <button @click="postInfo">post请求</button>
+    <button @click="jsonInfo">jsonp请求</button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/vue-resource/1.5.1/vue-resource.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {},
+        methods: {
+            getInfo() {
+                //发送get请求
+                /*this.$http.get("https://jsonplaceholder.typicode.com/todos/1").then(function (result) {
+                    console.log(result.body.id)
+                })*/
+                this.$http.get("http://127.0.0.1/data").then(function (result) {
+                    console.log(result.status)
+                })
+            },
+            postInfo() {
+                //发送post请求
+                //通过post方法的第三个参数{emulateJSON: true} 设置提交的内容为普通表单数据格式
+                this.$http.post("https://jsonplaceholder.typicode.com/posts", {}, {emulateJSON: true}).then(result => {
+                    console.log(result)
+                })
+            },
+            jsonInfo(){
+                this.$http.jsonp("https://jsonplaceholder.typicode.com/posts").then(result=>{
+                    console.log(result.body[0])
+                })
+            }
+        },
+    });
+</script>
+</body>
+</html>

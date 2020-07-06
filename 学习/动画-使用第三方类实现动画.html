@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.bootcdn.net/ajax/libs/animate.css/4.1.0/animate.compat.css" rel="stylesheet">
+
+</head>
+<body>
+
+    <div id="app">
+        <input type="button" value="click" @click="flag=!flag">
+        <!--<transition enter-active-class="animate bounceIn" leave-active-class="animate bounceOut">
+            <h3 v-if="flag">aaaaa</h3>
+        </transition>-->
+
+        <!--使用:duration来控制入场和出场的动画时长-->
+        <!--<transition enter-active-class=" bounceIn" leave-active-class=" bounceOut" :duration="200">
+            <h3 v-if="flag" class="animate">aaaaa</h3>
+        </transition>-->
+
+        <!--使用 :duration="{enter: 200,leave: 400}" 来分别控制入场和出场的时间-->
+        <transition enter-active-class=" bounceIn" leave-active-class=" bounceOut" :duration="{enter: 200,leave: 400}">
+            <h3 v-if="flag" class="animate">aaaaa</h3>
+        </transition>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                flag: false,
+            },
+            methods: {},
+        });
+    </script>
+</body>
+</html>

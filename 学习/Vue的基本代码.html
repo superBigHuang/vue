@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue的基本代码</title>
+</head>
+<body>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <!--将来new的Vue实列会控制这个元素中的所有内容-->
+    <!--这就是mvvm中的v    -->
+    <div id="app">
+        <p>{{msg}}</p>
+    </div>
+    <script>
+        // Vue对象这就是mvvm中的vm
+        var vm = new Vue({
+            el : '#app' , //表示我们new的Vue控制页面上的哪个区域
+            // data就是mvvm中的m
+            data : {  //存放的是el中要用到的数据
+                msg : '欢迎学习Vue'
+            },
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <div id="app">
+        <my-com1></my-com1>
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        //组件中的data除了必须要有一个方法之外，这个方法内部还必须要返回一个对象
+        
+        Vue.component("myCom1", {
+            template: "<h1>哈哈{{msg}}哈哈</h1>",
+            data: function () {
+                return {
+                    msg: "呵呵呵"
+                }
+            }
+        })
+
+        var vm = new Vue({
+            el: '#app' ,
+            data: {},
+            methods: {},
+        });
+    </script>
+</body>
+</html>

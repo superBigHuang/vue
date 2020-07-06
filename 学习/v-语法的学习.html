@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-语法的学习</title>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!--使用v-cloak可以解决插值表达式闪烁问题-->
+        <p v-cloak>dwad{{msg}}dwada</p>
+        <h4 v-text="msg">dwadawdawd</h4>
+        <!--v-text会把整个元素的内容清空，但是v-cloak只是替换占位符-->
+
+        <!--使用v-html可以输出html标签-->
+        <div>{{msg2}}</div>
+        <div v-text="msg2"></div>
+        <div v-html="msg2"></div>
+
+        <!--v-bind 用于绑定属性-->
+        <!--v-bind将mytitle默认为一个变量  -->
+        <input type="button" value="按钮" v-bind:title="mytitle + '123'">
+        <!--v-bind可以简写为:-->
+        <input type="button" value="按钮2" :title="mytitle">
+
+        <!--v-on 用于事件绑定-->
+        <input type="button" value="按一下" v-on:click="show">
+        <input type="button" value="鼠标移过" v-on:mouseover="show">
+        <!--v-on可以缩写为@-->
+        <input type="button" value="鼠标移过2" @mouseover="show">
+
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <script>
+        var vm = new Vue({
+            el : '#app' ,
+            data : {
+                msg : '欢迎学习Vue',
+                msg2 : "<h1>this is h1 text</h1>",
+                mytitle : "自定义的按钮标题",
+            },
+            methods : { //methods 属性中定义了当前vue中所有可用的方法
+                show : function () {
+                    alert("hello");
+                },
+            }
+        });
+    </script>
+</body>
+</html>

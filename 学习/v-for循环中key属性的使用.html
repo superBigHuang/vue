@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <label>id:<input type="text" v-model="id"></label>
+    <label>name:<input type="text" v-model="name"></label>
+    <input type="button" value="添加" @click="add">
+    <!--以后开发默认加上key-->
+    <!--使用key来强制绑定页面数据和data数据-->
+    <!--key只能传入int或者string-->
+    <p v-for="item in list" :key="item.id">
+        <input type="checkbox">
+        {{item.name}}
+    </p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            id: null,
+            name: null,
+            list: [
+                {id: 1, name: "啊达瓦"},
+                {id: 2, name: "个人的"},
+                {id: 3, name: "过来的"},
+                {id: 4, name: "高渐离"},
+            ]
+        },
+        methods: {
+            add() {
+                // this.list.push({id: this.id, name: this.name})
+                this.list.unshift({id: this.id, name: this.name})
+            }
+        },
+    });
+</script>
+</body>
+</html>

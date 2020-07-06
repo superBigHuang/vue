@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JavaScriptLibraryMappings">
+    <file url="PROJECT" libraries="{animate.compat, bootstrap-grid, vue, vue-router.cjs, vue-router.common}" />
+  </component>
+</project>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    aaaaa
+    <input type="text" v-fontweight="'900'" >
+    <p v-fontsize="'90'">dwadawdaw</p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {},
+        methods: {},
+        directives: {
+            //自定义私有指令
+            "fontweight": {
+                bind: function (el, binding) {
+                    el.style.fontWeight = binding.value
+                }
+            },
+            //简写形式
+            //这个function等同于吧代码写道了bind和update中去
+            "fontsize": function (el, binding) {
+                el.style.fontSize = parseInt(binding.value) + "px";
+            }
+        },
+    });
+</script>
+</body>
+</html>

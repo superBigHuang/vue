@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+        input:
+        <input type="text" @click.f2="show">
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        //自定义按键f2
+        Vue.config.keyCodes.f2=113
+
+        var vm = new Vue({
+            el: '#app',
+            data: {},
+            methods: {
+                show(){
+                    console.log("按键")
+                }
+            },
+        });
+    </script>
+</body>
+</html>

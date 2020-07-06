@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <p id="pId">{{msg}}</p>
+    <button @click="msg = 'cccc'">修改</button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            msg: "aaa",
+        },
+        methods: {
+            show() {
+                console.log("调用了show方法")
+            }
+        },
+        //第一个生命周期函数，Vue示例被完全创建之前会执行它
+        beforeCreate() {
+            //在beforeCreate生命周期函数执行的时候，data和methods中的数据还没有被初始化
+            //console.log(this.msg)
+        },
+        //第二个生命周期函数
+        created() {
+            // console.log(this.msg)
+        },
+        //第三个生命周期函数，表示模板已经在内存中编辑完成了 ，但是尚未渲染到页面中
+        beforeMount() {
+            // console.log(document.getElementById("pId").innerText)
+        },
+        //第四个生命周期函数，表示模板已经渲染到页面中去了
+        mounted() {
+            // console.log(document.getElementById("pId").innerText)
+        },
+
+        //数据被更新了会执行的方法
+        beforeUpdate() {
+            // console.log("界面上的内容" + document.getElementById("pId").innerText)
+            // console.log("data中的内容" + this.msg)
+            //结论：当执行beforeUpdate的时候，页面中显示的数据还是旧的，data中的数据是新的，页面尚未和最新数据同步
+        },
+        updated(){
+            console.log("界面上的内容" + document.getElementById("pId").innerText)
+            console.log("data中的内容" + this.msg)
+            //
+        }
+
+
+
+    });
+</script>
+</body>
+</html>

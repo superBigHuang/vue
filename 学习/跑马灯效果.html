@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>跑马灯效果</title>
+</head>
+<body>
+    <div id="app">
+        <div>{{msg}}</div>
+        <input type="button" value="浪起来" @click="lang">
+        <input type="button" value="停止" @click="stop">
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el : "#app",
+            data : {
+                msg : "猥琐发育，别浪",
+                intervalId : null , //在data上定义定时器id
+
+            },
+            methods : {
+                //lang : function(){} 可以简写为如下
+                //想要获得data中的数据必须要使用this.变量名,获得methods中的方法同理,这里的this指代vm实列
+                /*lang(){
+                    console.log(this.msg);
+                    var _this = this
+                    setInterval(function () {
+                        //获取到第一个字
+                        var start = _this.msg.substring(0,1);
+                        //获取到后面的字
+                        var end = _this.msg.substring(1);
+                        //给msg重新赋值
+                        _this.msg = end + start;
+                    },400)
+                }*/
+
+                lang(){
+                    //如果定时器id为空就可以开启定时器，防止开启多个定时器
+                    if(this.intervalId != null) return;
+
+                    console.log(this.msg);
+                    //可以使用() => {} 来代替上面的方法 ，这是es6中的语法,使得内外部this指代的是同一个
+                    this.intervalId = setInterval(() => {
+                        //获取到第一个字
+                        var start = this.msg.substring(0,1);
+                        //获取到后面的字
+                        var end = this.msg.substring(1);
+                        //给msg重新赋值
+                        this.msg = end + start;
+                    },400)
+                },
+                stop(){
+                  clearInterval(this.intervalId);
+                  this.intervalId = null;
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--/*过滤器调用时候的格式 {{name | 过滤器名称}}*/
+/*过滤器的定义语法*/
+// Var.filter("过滤器名称",function () {})-->
+<div id="app">
+    <!--需求：如果出现少年就改成青年-->
+    <p>{{ msg | msgFormat1 }}</p>
+    <p>{{ msg | msgFormat2 }}</p>
+    <!--需求：可以自定修改-->
+    <p>{{ msg | msgFormat3("男孩") }}</p>
+    <!--调用多个过滤器-->
+    <p>{{ msg | msgFormat3("男孩") | test }}</p>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    //定义一个Vue的全局过滤器，名字叫做msgFormat
+    Vue.filter("msgFormat1", function (msg) {
+        return msg.replace("少年", "青年")
+    })
+
+    Vue.filter("msgFormat2", function (msg) {
+        /*传入正则表达式*/
+        return msg.replace(/少年/g, "青年")
+    })
+
+    Vue.filter("msgFormat3", function (msg, arg) {
+        return msg.replace(/少年/g, arg)
+    })
+
+    Vue.filter("test", function (msg) {
+        return msg + "+++++++++"
+    })
+
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            msg: "我还是从前那个少年少年少年",
+        },
+        methods: {},
+    });
+</script>
+</body>
+</html>

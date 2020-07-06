@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-model</title>
+</head>
+<body>
+        <div id="app">
+            <h4>{{msg}}</h4>
+            <input type="text" v-bind:value="msg">
+            <br>
+            <!--使用v-model实行可以实现表单元素和model中的数据双向绑定-->
+            <!--表单元素：input select checkbok textarea-->
+            <input type="text" v-model="msg">
+
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script>
+            var vm = new Vue({
+                el : '#app' ,
+                data : {
+                    msg : "学习vue",
+                },
+                methods : {},
+            });
+        </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .red {
+            color: red;
+        }
+        .thin {
+            font-weight: 200;
+        }
+        .italic {
+            font-style: italic;
+        }
+        .active {
+            letter-spacing: 0.5em;
+        }
+    </style>
+</head>
+<body>
+    <div id="app" >
+        <h1 class="red thin">这是一个很大的h1</h1>
+        <!--使用v-bind绑定-->
+        <h1 :class="['red','thin']">这是一个很大的h1</h1>
+        <!--在数组中使用三元表达式-->
+        <h1 :class="['red','thin',flag?'active':'']">这是一个很大的h1</h1>
+        <!--在数组中使用对象替代三元表达式-->
+        <h1 :class="['red','thin',{active : flag}]">这是一个很大的h1</h1>
+        <!--直接绑定对象-->
+        <h1 :class="classObj">这是一个很大的h1</h1>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el : '#app' ,
+            data : {
+                flag : true,
+                classObj : {red : true, thin : true, italic : true, active : false }
+            },
+            methods : {},
+        });
+    </script>
+</body>
+</html>

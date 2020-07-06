@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body>
+
+    <div id="app">
+        <br>
+        <comt-box @func="lodeComments"></comt-box>
+        <ul class="list-group">
+            <li class="list-group-item" v-for="item in list" :key="item.id">
+                <span class="badge">评论人 :{{item.user}}</span>
+                {{item.content}}
+            </li>
+        </ul>
+    </div>
+
+    <template id="tmpl">
+        <div>
+            <div class="form-group">
+                <label>评论人</label>
+                <input type="text" class="form-control" v-model="user">
+            </div>
+            <div class="form-group">
+                <label>评论内容</label>
+                <textarea class="form-control" v-model="content"></textarea>
+            </div>
+            <div class="form-group">
+                <input type="button" value="发表评论" class="btn btn-primary" @click="postContent">
+            </div>
+        </div>
+    </template>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var commentBox = {
+            template: "#tmpl",
+            data() {
+                return {
+                    user: '',
+                    content: '',
+                }
+            },
+            methods: {
+                postContent() { //发表评论的方法
+                    var comment = {id: Date.now(), user: this.user, content: this.content}
+                    //从localstorage中获得数据
+                    var list = JSON.parse(localStorage.getItem("cmts") || '[]');
+                    list.unshift(comment)
+                    //保存最新的数据
+                    localStorage.setItem("cmts", JSON.stringify(list))
+                    this.user = this.content = ""
+                    this.$emit("func")
+                }
+            }
+        }
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                list: [
+                    {id: Date.now(), user: "李白", content: "天生我材必有用"},
+                    {id: Date.now(), user: "杜甫", content: "天苍苍"},
+                    {id: Date.now(), user: "谁谁", content: "剪不断理还乱"},
+                    {id: Date.now(), user: "辛弃疾", content: "家祭勿忘告乃翁"}
+                ]
+            },
+            methods: {
+                lodeComments() {
+                    //从本地的localStorage加载评论列表
+                    var list = JSON.parse(localStorage.getItem("cmts") || '[]');
+                    this.list = list
+                }
+            },
+            components: {
+                'comt-box': commentBox
+            },
+            created(){
+              this.lodeComments()
+            }
+        });
+    </script>
+</body>
+</html>

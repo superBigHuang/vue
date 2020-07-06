@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+        <!--过滤器采用就近原则-->
+        <p>{{cdate | msgFormat }}</p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                cdate: new Date(),
+            },
+            methods: {},
+            filters: {//定义私有过滤器 过滤器有两个条件 过滤器名称和处理函数
+                msgFormat: function (dateStr,formateStr='') {
+                    var date = new Date(dateStr);
+
+                    var y = date.getFullYear();
+                    /*es6新方法 填充字符串 padstart(填充完的总长度，用什么填充)*/
+                    var m = (date.getMonth() + 1).toString().padStart(2,"0");
+                    var d = date.getDate().toString().padStart(2,"0");
+                    var hh = date.getHours().toString().padStart(2,"0");
+                    var mm = date.getMinutes().toString().padStart(2,"0");
+                    var ss = date.getSeconds().toString().padStart(2,"0");
+
+                    //es6新特性 模板字符串 注意使用" ` " 不是单引号
+                    if (formateStr.toLowerCase() == "yyyy-mm-dd"){
+                        return `${y}-${m}-${d}`
+                    }else{
+                        return `${y}-${m}-${d} ${hh}:${mm}:${ss}`
+                    }
+                }
+
+            },
+        });
+    </script>
+</body>
+</html>

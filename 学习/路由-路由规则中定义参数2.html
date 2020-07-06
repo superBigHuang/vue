@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <div id="app">
+        <router-view></router-view>
+        <router-link to="/login/12/aaa">登录</router-link>
+        <router-link to="/register">注册</router-link>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.bootcss.com/vue-router/3.0.1/vue-router.min.js"></script>
+    <script>
+
+        var login = {
+            template: "<h1>这是登录组件---{{$route.params.id}}---{{$route.params.name}}</h1>",
+            created() {//组件生命周期钩子函数
+                console.log(this.$route.params.id)
+                console.log(this.$route.params)
+                console.log(this.$route.params.name)
+            }
+        }
+        var register = {
+            template: "<h1>这是注册组件</h1>"
+        }
+
+        var routerObj = new VueRouter({
+            routes: [
+                {path: '/login/:id/:name', component: login},
+                {path: '/register', component: register}
+            ]
+        })
+
+
+        var vm = new Vue({
+            el: '#app',
+            data: {},
+            methods: {},
+            router: routerObj
+        });
+    </script>
+</body>
+</html>

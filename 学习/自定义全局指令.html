@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    aaaa
+    <input type="text" v-focus v-color="'yellow'">
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    //使用Vue.directive()定义全局指令
+    //参数1：指令名称，在定义的时候，指令名称前面不需要添加v-前缀，在调用的时候必须加上v-前缀
+    //参数2：是一个对象，
+    Vue.directive("focus", {
+        //当focus绑定到某个元素上的时候，el就是这个元素
+        //和样式相关的放在bind中
+        bind: function (el) {//每当指令绑定到元素上的时候，就会立即执行bind函数，只执行一次
+            //在每一个函数中，第一个参数永远都是el
+            //元素刚绑定指令的时候，还没有插入到dom中去，这时候调用focus没有作用
+            //因为一个元素只有插入到dom中去之后才能获取焦点
+            //el.focus();
+
+        },
+        //和js相关的放在inserted
+        inserted: function (el) { //元素插入到dom中的时候会触发inserted函数，只触发一次
+            el.focus();
+        },
+        update: function () { //当Vnode更新的时候，会执行update，可触发多次
+
+        }
+    });
+
+    Vue.directive("color",{
+       bind:function (el,binding) {
+           //样式只要绑定给了元素，不管这个元素有没有插入到页面中去，这个元素肯定有了内联样式
+           //将来元素肯定会显示到页面中，这时候浏览器渲染引擎必然会解析样式，应用这个元素
+           el.style.color = "blue"
+           console.log(binding.name)
+           console.log(binding.value)
+           console.log(binding.expression)
+           el.style.color = binding.value
+
+       }
+    })
+
+    var vm = new Vue({
+        el: '#app',
+        data: {},
+        methods: {},
+    });
+</script>
+</body>
+</html>
