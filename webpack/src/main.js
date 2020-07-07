@@ -7,6 +7,7 @@ import $ from 'jquery'  //相当于 const $ = require('jquery')
 // 使用import语法，写入css样式表
 import './css/index.css'
 import './css/index2.less'
+import './css/url.css'
 // 注意：webpack默认只能打包处理js文件
 // 如果要处理非JS文件，我们需要手动的安装一些第三方loader加载器
 // 如果需要打包处理css 需要安装 npm i style-loader css-loader -D
