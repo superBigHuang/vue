@@ -35,7 +35,10 @@ module.exports = {
             // limit 给定的值，是图片的大小，单位byte，如果我们引用的图片大于或者等于limit就不会被转为base64格式的字符串
             // name=[name].[ext] 不重命名图片名字
             // [hash:8] 去前八位的hash值
-            {test: /\.(jpg|gif|png|bmp|jpeg)$/, use: 'url-loader?limit=144668&name=[hash:8]-[name].[ext]'} //配置处理图片的第三方loader规则
+            {test: /\.(jpg|gif|png|bmp|jpeg)$/, use: 'url-loader?limit=144668&name=[hash:8]-[name].[ext]'},//配置处理图片的第三方loader规则
+            {test: /\.(ttf|eot|svg|woff|woff2)$/, use: 'url-loader'}, //配置处理字体的第三方loader规则
+            //{test: /\.js$/,use: 'babel-loader', exclude:'/node_modules/'} // 配置处理ES高级语法的第三方loader规则
+            //注意 :必须把node_modules目录通过exclude排除掉
         ]
     }
 
