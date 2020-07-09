@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "mint-ui": "^2.2.13",
     "vue": "^2.6.11",
     "vue-router": "^3.3.4"
   },

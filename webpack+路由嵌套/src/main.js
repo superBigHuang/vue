@@ -5,11 +5,14 @@ import app from './app.vue'
 
 // 导入自定义路由模块
 import router from './router'
+// 导入mint ui
+import MintUi from 'mint-ui'
+import 'mint-ui/lib/style.css'
 
 // 2.手动安装VueRouter
 Vue.use(VueRouter)
-
-//3.创建路由对象
+// 将MintUI安装到 Vue 中
+Vue.use(MintUi)
 
 
 var vm = new Vue({
